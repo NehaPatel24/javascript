@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(181, 201, 201);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#container {
+  height: 400px;
+  width: 350px;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+#container img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+
+#likeIcon {
+  font-size: 75px;
+  color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all ease 0.4s;
+}
+

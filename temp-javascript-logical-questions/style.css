@@ -1,0 +1,27 @@
+#bulb{
+  height : 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 4px;
+}
+
+button{
+  padding: 10px 30px;
+  font-size: 10px;
+  margin: 50px;
+}
+
+/* h1{
+  font-size: 70px;
+  font-weight: 800px;
+} */
+
+#box{
+  height: 300px;
+  width: 300px;
+  background-color: salmon;
+}
+
+h1{
+  color: blue;
+}
