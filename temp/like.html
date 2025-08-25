@@ -1,0 +1,134 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Awesome Test</title>
+  <script src="https://kit.fontawesome.com/32eff59624.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="like.css">
+</head>
+<body>
+  <div id="container">
+    <img src="https://w0.peakpx.com/wallpaper/351/136/HD-wallpaper-arlamovsky-petals-rose-women-women-indoors-graphy-simple-background-eyes-brunette-red-lipstick-hair-retouching-face-portrait-karina-ramazanova.jpg" alt="">
+    <i class="fa-solid fa-heart" id="likeIcon"></i>
+</div>
+<script src="like.js"></script>
+ 
+</body>
+</html> -->
+
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Double-Click Heart on Nose</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: rgb(181, 201, 201);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    #container {
+      position: relative;
+      width: 350px;
+      height: 400px;
+      border-radius: 10px;
+      overflow: hidden;   /* keep heart inside the image bounds */
+      background: #fff;
+    }
+
+    #girlImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;   /* indicates dblclick target */
+      user-select: none; /* prevent text/image selection on dblclick */
+      -webkit-user-drag: none;
+    }
+
+    /* Heart icon (SVG) */
+    #likeIcon {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      /* start centered on the click point using translate */
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      pointer-events: none; /* never block clicks on the image */
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* visible state */
+    #likeIcon.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.2);
+      animation: pop 0.35s ease forwards;
+    }
+
+    @keyframes pop {
+      0%   { transform: translate(-50%, -50%) scale(0);   opacity: 0; }
+      60%  { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1);   opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img
+      id="girlImage"
+      src="https://w0.peakpx.com/wallpaper/351/136/HD-wallpaper-arlamovsky-petals-rose-women-women-indoors-graphy-simple-background-eyes-brunette-red-lipstick-hair-retouching-face-portrait-karina-ramazanova.jpg"
+      alt="Portrait"
+      draggable="false"
+    />
+    <!-- Inline SVG heart (red fill) -->
+    <svg id="likeIcon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12.001 20.727c-.33 0-.66-.1-.94-.3-1.98-1.43-3.74-2.94-5.27-4.5-1.58-1.6-2.84-3.27-3.7-4.96C.69 8.45.4 6.99.74 5.67 1.23 3.67 2.95 2.2 5 2.03c1.63-.13 3.22.49 4.39 1.76l.62.66.62-.66C11.8 2.52 13.38 1.9 15.01 2.03c2.05.17 3.77 1.64 4.26 3.64.34 1.32.05 2.78-.65 4.34-.86 1.88-2.19 3.7-3.95 5.4-1.54 1.5-3.32 3-5.31 4.43-.28.2-.6.3-.92.3z" fill="red"/>
+    </svg>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const img = document.getElementById('girlImage');
+    const heart = document.getElementById('likeIcon');
+
+    let heartVisible = false;
+
+    // On double-click, place the heart exactly at the click position and toggle visibility
+    img.addEventListener('dblclick', (e) => {
+      const rect = container.getBoundingClientRect();
+
+      // Mouse position relative to the container
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Position heart at the dbl-click spot (center the SVG on that point)
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+
+      // Toggle show/hide
+      heartVisible = !heartVisible;
+
+      if (heartVisible) {
+        // restart animation cleanly if already shown before
+        heart.classList.remove('show');
+        void heart.offsetWidth; // force reflow
+        heart.classList.add('show');
+      } else {
+        heart.classList.remove('show'); // transitions back to scale(0), opacity:0
+      }
+    });
+  </script>
+</body>
+</html>
+
+```
